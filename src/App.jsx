@@ -33,13 +33,15 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className='appWrapper'>
       <div className="container">
         <div className="game_arena position-relative">
 
           <div className="player cube position-absolute"
             style={{ top: `${playerPosition[0]}%`, left: `${playerPosition[1]}%` }}
-          ></div>
+          >
+            <img src="../../public/giacomino.png" alt="" />
+          </div>
         </div>
       </div>
     </div>

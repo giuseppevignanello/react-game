@@ -1,7 +1,12 @@
+.appWrapper {
+  padding: 2rem 0;
+  background-color: rgba(1, 222, 1, 0.668);
+}
+
 .cube {
-  height: 30px;
-  width: 30px;
-  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+  
 }
 
 .game_arena {
@@ -9,4 +14,11 @@
   height: 600px;
   border: 1px solid black;
   margin: 4rem auto;
+  background-image: url('/public/grass.jpg');
+  background-size: contain;
+  overflow: hidden;
+}
+
+.player img {
+ max-width: 100%; 
 }
