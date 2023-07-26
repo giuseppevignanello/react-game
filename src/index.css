@@ -1,0 +1,12 @@
+.cube {
+  height: 30px;
+  width: 30px;
+  border: 1px solid black;
+}
+
+.game_arena {
+  width: 600px;
+  height: 600px;
+  border: 1px solid black;
+  margin: 4rem auto;
+}
