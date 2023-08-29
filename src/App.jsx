@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 const App = () => {
-  const [playerPosition, setPlayerPosition] = useState([0, 0]);
+  let [playerPosition, setPlayerPosition] = useState([0, 0]);
+  let [jointPosition, setJointPosition] = useState([30, 50]);
 
   useEffect(() => {
 
@@ -32,6 +33,11 @@ const App = () => {
     }
   };
 
+  if (playerPosition == jointPosition) {
+    jointPosition[0] = 10;
+    jointPosition[1] = 10
+  }
+
   return (
     <div className='appWrapper'>
       <div className="container">
@@ -40,7 +46,11 @@ const App = () => {
           <div className="player cube position-absolute"
             style={{ top: `${playerPosition[0]}%`, left: `${playerPosition[1]}%` }}
           >
-            <img src="../../public/giacomino.png" alt="" />
+            <img src="../../public/stevejobs.png" alt="" />
+          </div>
+          <div className='apple cube position-absolute'
+            style={{ top: `${jointPosition[0]}%`, left: `${jointPosition[1]}%` }}>
+            <img src="../../public/apple.png" alt="" />
           </div>
         </div>
       </div>
