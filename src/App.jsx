@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const App = () => {
   let [playerPosition, setPlayerPosition] = useState([0, 0]);
-  let [applePosition, setapplePosition] = useState([30, 50]);
+  let [applePosition, setapplePosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
 
   useEffect(() => {
 
@@ -14,9 +14,6 @@ const App = () => {
     };
   }, []);
 
-  function random_multiple_5(min, max) {
-    return Math.round((Math.random() * (max - min) + min) / 5) * 5;
-  }
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -37,10 +34,22 @@ const App = () => {
     }
   };
 
+  // re-spawn apple
   if (playerPosition[0] == applePosition[0] && playerPosition[1] == applePosition[1]) {
     applePosition[0] = random_multiple_5(0, 95);
     applePosition[1] = random_multiple_5(0, 95);
   }
+
+  // random function
+  function random_multiple_5(min, max) {
+    return Math.round((Math.random() * (max - min) + min) / 5) * 5;
+  }
+
+  if (playerPosition[0] > 95 || playerPosition[0] < 0 || playerPosition[1] > 95 || playerPosition[1] < 0) {
+    alert('You Lose')
+  }
+
+
 
   return (
     <div className='appWrapper'>
