@@ -20,11 +20,13 @@
 }
 
 .player img {
-  height: 200%;
+  height: 120%;
   z-index: 1000;
+  text-align: center;
 }
 
 .apple img {
   height: 100%;
+  text-align: center;
 
 }

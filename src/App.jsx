@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const App = () => {
   let [playerPosition, setPlayerPosition] = useState([0, 0]);
-  let [jointPosition, setJointPosition] = useState([30, 50]);
+  let [applePosition, setapplePosition] = useState([30, 50]);
 
   useEffect(() => {
 
@@ -13,6 +13,10 @@ const App = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+
+  function random_multiple_5(min, max) {
+    return Math.round((Math.random() * (max - min) + min) / 5) * 5;
+  }
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -33,9 +37,9 @@ const App = () => {
     }
   };
 
-  if (playerPosition == jointPosition) {
-    jointPosition[0] = 10;
-    jointPosition[1] = 10
+  if (playerPosition[0] == applePosition[0] && playerPosition[1] == applePosition[1]) {
+    applePosition[0] = random_multiple_5(0, 95);
+    applePosition[1] = random_multiple_5(0, 95);
   }
 
   return (
@@ -49,7 +53,7 @@ const App = () => {
             <img src="../../public/stevejobs.png" alt="" />
           </div>
           <div className='apple cube position-absolute'
-            style={{ top: `${jointPosition[0]}%`, left: `${jointPosition[1]}%` }}>
+            style={{ top: `${applePosition[0]}%`, left: `${applePosition[1]}%` }}>
             <img src="../../public/apple.png" alt="" />
           </div>
         </div>
