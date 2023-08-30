@@ -31,3 +31,11 @@
   text-align: center;
 
 }
+
+.snake-segment {
+  width: 5%; /* Puoi regolare la dimensione a tuo piacimento */
+  height: 5%;
+  background-color: #00f; /* Colore del serpente */
+  position: absolute;
+  transition: all 0.2s; /* Aggiungi una transizione per un movimento più fluido */
+}

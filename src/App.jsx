@@ -4,6 +4,8 @@ const App = () => {
   const [playerPosition, setPlayerPosition] = useState([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
   const [applePosition, setApplePosition] = useState([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
   const [score, setScore] = useState(0);
+  const [playerBody, setPlayerBody] = useState([])
+
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -38,6 +40,9 @@ const App = () => {
 
         //increase the score 
         setScore((prevScore) => prevScore + 1);
+        //add an item to "snake tail"
+        setPlayerBody((prevPlayerBody) => [...prevPlayerBody, [applePosition[0], applePosition[1]]]);
+        console.log(playerBody)
         //respawn apple 
         setApplePosition([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
       }
@@ -77,19 +82,19 @@ const App = () => {
     if (direction === 'right') {
       intervalId = setInterval(function () {
         setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] + 5]);
-      }, 200);
+      }, 150);
     } else if (direction === 'left') {
       intervalId = setInterval(function () {
         setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] - 5]);
-      }, 200);
+      }, 150);
     } else if (direction === 'up') {
       intervalId = setInterval(function () {
         setPlayerPosition((prevPosition) => [prevPosition[0] - 5, prevPosition[1]]);
-      }, 200);
+      }, 150);
     } else if (direction === 'down') {
       intervalId = setInterval(function () {
         setPlayerPosition((prevPosition) => [prevPosition[0] + 5, prevPosition[1]]);
-      }, 200);
+      }, 150);
     }
   }
   return (
@@ -97,6 +102,7 @@ const App = () => {
       <div className="container">
         <h3 className='text-center'>Score: {score}</h3>
         <div className="game_arena position-relative">
+
           <div className="player cube position-absolute"
             style={{ top: `${playerPosition[0]}%`, left: `${playerPosition[1]}%` }}
           >
