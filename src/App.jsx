@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 const App = () => {
-  const [playerPosition, setPlayerPosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
-  const [applePosition, setApplePosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+  const [playerPosition, setPlayerPosition] = useState([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
+  const [applePosition, setApplePosition] = useState([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
   const [score, setScore] = useState(0);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const App = () => {
         //increase the score 
         setScore((prevScore) => prevScore + 1);
         //respawn apple 
-        setApplePosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+        setApplePosition([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
       }
     };
 
@@ -47,13 +47,13 @@ const App = () => {
   }, [playerPosition, applePosition]);
 
   useEffect(() => {
-    if (playerPosition[0] > 95 || playerPosition[0] < 0 || playerPosition[1] > 95 || playerPosition[1] < 0) {
+    if (playerPosition[0] > 90 || playerPosition[0] < 0 || playerPosition[1] > 90 || playerPosition[1] < 0) {
       alert('You Lose');
       // Reset score
       setScore(0);
       //Re-spawn player and apple 
-      setPlayerPosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
-      setApplePosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+      setPlayerPosition([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
+      setApplePosition([random_multiple_5(0, 90), random_multiple_5(0, 90)]);
     }
   }, [playerPosition]);
 
