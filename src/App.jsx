@@ -16,16 +16,16 @@ const App = () => {
   const handleKeyDown = (event) => {
     switch (event.key) {
       case 'ArrowUp':
-        setPlayerPosition((prevPosition) => [prevPosition[0] - 5, prevPosition[1]]);
+        move('up')
         break;
       case 'ArrowDown':
-        setPlayerPosition((prevPosition) => [prevPosition[0] + 5, prevPosition[1]]);
+        move('down')
         break;
       case 'ArrowLeft':
-        setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] - 5]);
+        move('left')
         break;
       case 'ArrowRight':
-        setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] + 5]);
+        move('right')
         break;
       default:
         break;
@@ -62,6 +62,36 @@ const App = () => {
     return Math.round((Math.random() * (max - min) + min) / 5) * 5;
   }
 
+
+  // function to automatical move player icon
+
+
+  let intervalId; // variable to store actuale moving 
+
+  function move(direction) {
+    // check if there is an active interval
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+
+    if (direction === 'right') {
+      intervalId = setInterval(function () {
+        setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] + 5]);
+      }, 200);
+    } else if (direction === 'left') {
+      intervalId = setInterval(function () {
+        setPlayerPosition((prevPosition) => [prevPosition[0], prevPosition[1] - 5]);
+      }, 200);
+    } else if (direction === 'up') {
+      intervalId = setInterval(function () {
+        setPlayerPosition((prevPosition) => [prevPosition[0] - 5, prevPosition[1]]);
+      }, 200);
+    } else if (direction === 'down') {
+      intervalId = setInterval(function () {
+        setPlayerPosition((prevPosition) => [prevPosition[0] + 5, prevPosition[1]]);
+      }, 200);
+    }
+  }
   return (
     <div className='appWrapper'>
       <div className="container">
