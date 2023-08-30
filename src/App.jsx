@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
 const App = () => {
-  let [playerPosition, setPlayerPosition] = useState([0, 0]);
-  let [applePosition, setapplePosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+  const [playerPosition, setPlayerPosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+  const [applePosition, setApplePosition] = useState([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
-
     window.addEventListener('keydown', handleKeyDown);
-
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
-
 
   const handleKeyDown = (event) => {
     switch (event.key) {
@@ -34,28 +32,41 @@ const App = () => {
     }
   };
 
-  // re-spawn apple
-  if (playerPosition[0] == applePosition[0] && playerPosition[1] == applePosition[1]) {
-    applePosition[0] = random_multiple_5(0, 95);
-    applePosition[1] = random_multiple_5(0, 95);
-  }
+  useEffect(() => {
+    const respawnAppleAndUpdateScore = () => {
+      if (playerPosition[0] === applePosition[0] && playerPosition[1] === applePosition[1]) {
 
-  // random function
+        //increase the score 
+        setScore((prevScore) => prevScore + 1);
+        //respawn apple 
+        setApplePosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+      }
+    };
+
+    respawnAppleAndUpdateScore();
+  }, [playerPosition, applePosition]);
+
+  useEffect(() => {
+    if (playerPosition[0] > 95 || playerPosition[0] < 0 || playerPosition[1] > 95 || playerPosition[1] < 0) {
+      alert('You Lose');
+      // Reset score
+      setScore(0);
+      //Re-spawn player and apple 
+      setPlayerPosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+      setApplePosition([random_multiple_5(0, 95), random_multiple_5(0, 95)]);
+    }
+  }, [playerPosition]);
+
+  //random function 
   function random_multiple_5(min, max) {
     return Math.round((Math.random() * (max - min) + min) / 5) * 5;
   }
 
-  if (playerPosition[0] > 95 || playerPosition[0] < 0 || playerPosition[1] > 95 || playerPosition[1] < 0) {
-    alert('You Lose')
-  }
-
-
-
   return (
     <div className='appWrapper'>
       <div className="container">
+        <h3 className='text-center'>Score: {score}</h3>
         <div className="game_arena position-relative">
-
           <div className="player cube position-absolute"
             style={{ top: `${playerPosition[0]}%`, left: `${playerPosition[1]}%` }}
           >
